@@ -1,7 +1,7 @@
 'use strict';
 
 function ContratosLigadosCtrl($uibModalInstance, $uibModal, $scope, $rootScope, corporativoFactory, detalle, $state, ngNotify, ContratoMaestroFactory, $timeout, $localStorage) {
-
+////funcion de inicializacion del controlador, hace unas asignaciones y validaciones, despues recorre todos los contratos de softv para la obtencion de datos
   function Init() {
     vm.contratos = [];
     vm.displayCollection = [];
@@ -34,12 +34,12 @@ function ContratosLigadosCtrl($uibModalInstance, $uibModal, $scope, $rootScope, 
     sortByKey(vm.contratos, 'Nivel');
     sortByKey(vm.displayCollection, 'Nivel');
   }
-
+//imprime en consola, solo para pruebas 
   function Prueba() {
     console.log('vm.contratos', vm.contratos);
     console.log('vm.displayCollection', vm.displayCollection);
   }
-
+//valida si es ADD, si es llama a maestroEditar 
   function cancel() {
     if (detalle.Action == 'ADD') {
       $state.go('home.corporativa.maestroEditar', {id: detalle.IdContratoMaestro});
@@ -68,7 +68,7 @@ function ContratosLigadosCtrl($uibModalInstance, $uibModal, $scope, $rootScope, 
     ValidaContrato(contrato);
   });
 
-
+//ordena lo obtenido de los parametros 
   function sortByKey(array, key) {
     return array.sort(function (a, b) {
       var x = a[key];
@@ -77,7 +77,7 @@ function ContratosLigadosCtrl($uibModalInstance, $uibModal, $scope, $rootScope, 
     });
   }
 
-
+//revisara el contrato que no este asignado, si no lo esta llama a la vista ModalProporcional
   function ValidaContrato(contrato) {
     var aux = 0;
     vm.contratos.forEach(function (item) {
@@ -110,7 +110,7 @@ function ContratosLigadosCtrl($uibModalInstance, $uibModal, $scope, $rootScope, 
     }
 
   };
-
+//llama a la vista buscaContrato.html
   function clientesModal() {
     var detalle = {};
     detalle.contratos = vm.contratos;
@@ -134,7 +134,7 @@ function ContratosLigadosCtrl($uibModalInstance, $uibModal, $scope, $rootScope, 
       }
     });
   }
-
+//valida si se introducio algun contrato y si los hay los liga con el contrato maestro 
   function ok() {
     if (vm.contratos.length > 0) {
       var contratos = [];
@@ -165,7 +165,7 @@ function ContratosLigadosCtrl($uibModalInstance, $uibModal, $scope, $rootScope, 
     }
 
   }
-
+//Primero editam los contratos existentes, después elimina los que quitaron
   function edit() {
     //Primero editamos los contratos existentes
 
@@ -205,7 +205,7 @@ function ContratosLigadosCtrl($uibModalInstance, $uibModal, $scope, $rootScope, 
       });
     }
   }
-
+//resive el contrato y lo elimina de la lista 
   function eliminarContrato(Contrato) {
     var indexE = 0;
     //console.log('Contrato', Contrato);
@@ -225,7 +225,7 @@ function ContratosLigadosCtrl($uibModalInstance, $uibModal, $scope, $rootScope, 
     vm.contratos.splice(indexE, 1);
     vm.displayCollection.splice(indexE, 1);
   }
-
+//se valida que el archivo sea valido y despues muestra los contratos validos 
   function ValidaArchivo() {
     var files = $("#inputFile2").get(0).files;
     if (files.length == 0) {
@@ -271,7 +271,7 @@ function ContratosLigadosCtrl($uibModalInstance, $uibModal, $scope, $rootScope, 
 
     });
   }
-
+//hace una validacion y si se cumple llama a la funcion swapArrayElements
   function cambioNivel() {
     if (vm.contratos.length > 0) {
       var indexA = vm.Nivelant - 1;
@@ -281,7 +281,7 @@ function ContratosLigadosCtrl($uibModalInstance, $uibModal, $scope, $rootScope, 
     }
 
   }
-
+//intercambia el contenido de los parametros resividos 
   var swapArrayElements = function (arr, indexA, indexB) {
     var temp = arr[indexA];
     arr[indexA] = arr[indexB];

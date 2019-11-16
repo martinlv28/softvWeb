@@ -19,7 +19,7 @@
     vm.cambioDescripcion = cambioDescripcion;
     vm.cambioMonto = cambioMonto;
     vm.totalconceptos = 0;
-
+//
     this.$onInit = function () {
       vm.clave = obj.clave;
       vm.status = obj.status;

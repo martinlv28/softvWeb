@@ -23,7 +23,7 @@ function NuevoMaestroCtrl($uibModal, $rootScope, corporativoFactory, cajasFactor
 	vm.fechaVigencia = "";
 	vm.getEstadoCiudadPais = getEstadoCiudadPais;
 	vm.buscarCP = buscarCP;
-
+//funcion de inicializacion del controlador, obtiene la infomracion de las cuentas
 	this.$onInit = function () {
 		corporativoFactory.getDistribuidores().then(function (data) {
 			vm.distribuidores = data.GetDistribuidoresResult;
@@ -55,7 +55,7 @@ function NuevoMaestroCtrl($uibModal, $rootScope, corporativoFactory, cajasFactor
 			}); */
 	}
 
-
+//llama a otra vista para buscar el codigo postal 
 	function buscarCP() {
 
 		var modalInstance = $uibModal.open({
@@ -80,7 +80,7 @@ function NuevoMaestroCtrl($uibModal, $rootScope, corporativoFactory, cajasFactor
 
 
 	}
-
+//obtiene los paices y dentro los estados y dentro los municipios y dentro las colonias 
 	function getEstadoCiudadPais() {
 		ContratoMaestroFactory.GetPaisesMizar(vm.cp).then(function (data) {
 			console.log("GetPaisesMizar", data);
@@ -108,7 +108,7 @@ function NuevoMaestroCtrl($uibModal, $rootScope, corporativoFactory, cajasFactor
 			});
 		});
 	}
-
+//valida que se pueda abrir un contrato y si es que si puede llama a la vista contratosLigados.html
 	function abrirContratos() {
 		var detalle = {};
 		detalle.ContratosSoftv = vm.contratos;
@@ -142,7 +142,7 @@ function NuevoMaestroCtrl($uibModal, $rootScope, corporativoFactory, cajasFactor
 	$rootScope.$on('contratos_ligados', function (e, contratos) {
 		vm.contratos = contratos
 	});
-
+//hace las validaciones necesarias para poder agegar el contrato maestro, si las validaciones son correctas guarda el nuevo contraro maestro
 	function guardarContrato() {
 		if (vm.MuestraBanco) {
 			if (!vm.selectedBanco) {
@@ -256,7 +256,7 @@ function NuevoMaestroCtrl($uibModal, $rootScope, corporativoFactory, cajasFactor
 			vm.helpSave = true;
 		});
 	}
-
+//revisa la variable entrante y la valida, donde depende de el resultado asigna valores a elementos de la ventana 
 	function CambioTipoPago(x) {
 		if (x == 'postpago') {
 			vm.DesReactiva = false;
@@ -267,7 +267,7 @@ function NuevoMaestroCtrl($uibModal, $rootScope, corporativoFactory, cajasFactor
 			vm.reactivacion = 'manual';
 		}
 	}
-
+//revisa la variable entrante y la valida, donde depende de el resultado asigna valores a elementos de la ventana 
 	function CambioTipo(x) {
 		if (x.Cuenta == true) {
 			vm.MuestraReferencia = true;

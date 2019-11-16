@@ -22,7 +22,7 @@
         vm.Aceptar2 = Aceptar2;
         vm.Meses = 1;
 
-
+//valida que este seleccionado al menos un contrato, donde si es el caso agrega contratos factura preliminar 
         function Aceptar() {
             if (vm.ContratosSeleccionados.length == 0) {
                 ngNotify.set('Es necesario seleccionar al menos un contrato.', 'warn');
@@ -39,8 +39,7 @@
                 });
             }
         }
-
-        function Aceptar2() {
+//valida que este seleccionado al menos un contrato, donde si es el caso elinima contratos factura preliminar 
             if (vm.ContratosSeleccionados2.length == 0) {
                 ngNotify.set('Es necesario seleccionar al menos un contrato.', 'warn');
             }
@@ -55,7 +54,7 @@
                 });
             }
         }
-
+//Busca e contrato y lo quita de la lista 
         function QuitarContrato(Contrato) {
             vm.displayCollection.push(Contrato);
             var indexAux = 0;
@@ -66,7 +65,7 @@
             });
             vm.ContratosSeleccionados.splice(indexAux, 1);
         }
-
+//Busca e contrato y lo quita de la lista 
         function QuitarContrato2(Contrato) {
             vm.displayCollection2.push(Contrato);
             var indexAux = 0;
@@ -77,7 +76,7 @@
             });
             vm.ContratosSeleccionados2.splice(indexAux, 1);
         }
-
+//Busca e contrato y lo quita de la lista 
         function AgregarContrato(Contrato) {
             vm.ContratosSeleccionados.push(Contrato);
             var indexAux = 0;
@@ -88,7 +87,7 @@
             });
             vm.displayCollection.splice(indexAux, 1);
         }
-
+Busca e contrato y lo quita de la lista 
         function AgregarContrato2(Contrato) {
             vm.ContratosSeleccionados2.push(Contrato);
             var indexAux = 0;
@@ -99,7 +98,7 @@
             });
             vm.displayCollection2.splice(indexAux, 1);
         }
-
+//funcion de inicializacion del controlador, obtiene los contratos preliminar 
         this.$onInit = function () {
             vm.Clv_FacturaMaestro = FacturaMaestro.Clv_FacturaMaestro;
             var parametros = {};
@@ -113,11 +112,11 @@
                 });
             });
         };
-
+////Se puede usar para descartar un modal
         function cancel() {
             $uibModalInstance.dismiss('cancel');
         }
-
+//NA
         function ok() {
 
         }

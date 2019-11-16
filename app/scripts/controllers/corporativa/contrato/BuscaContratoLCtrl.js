@@ -1,9 +1,11 @@
 'use strict';
 
 function BuscaContratoLCtrl($uibModalInstance, atencionFactory, $rootScope, corporativoFactory, ngNotify, contratos) {
+	//Se puede usar para descartar un modal
 	function cancel() {
 		$uibModalInstance.dismiss('cancel');
 	}
+	//funcion de inicializacion del controlador, asigna valores a variables y llama a buscarCliente
 	this.$onInit = function() {
 		var obje = {};
 		obje.servicio = 3;
@@ -15,7 +17,7 @@ function BuscaContratoLCtrl($uibModalInstance, atencionFactory, $rootScope, corp
 			vm.Clientes = data.GetBuscaByIdDisListResult;
 		});
 	}
-
+//valida que haya un contrato y despues llama a la funcion buscarCliente
 	function BusquedaporContrato() {
 		if (vm.BUcontrato == null) {
 			ngNotify.set('Ingresa un contrato válido', 'error');
@@ -32,7 +34,7 @@ function BuscaContratoLCtrl($uibModalInstance, atencionFactory, $rootScope, corp
 			vm.Clientes = data.GetBuscaByIdDisListResult;
 		});
 	}
-
+//valida que haya un nombre y despues llama a la funcion buscarCliente
 	function BusquedaporNombre() {
 		if (vm.BUnombre == null && vm.BUapaterno == null && vm.BUamaterno == null) {
 			ngNotify.set('Ingresa por lo menos un parametro de búsqueda', 'error');
@@ -51,7 +53,7 @@ function BuscaContratoLCtrl($uibModalInstance, atencionFactory, $rootScope, corp
 			
 		});
 	}
-
+//valida el contrato seleccionado 
 
 	function Seleccionar(contrato) {	
 		corporativoFactory.validaContrato(contrato.ContratoBueno, contratos.ContratoMaestro).then(function(data) {			
@@ -65,7 +67,7 @@ function BuscaContratoLCtrl($uibModalInstance, atencionFactory, $rootScope, corp
 			}
 		});
 	}
-
+//Se puede usar para descartar un modal
 	function cancel() {
 		$uibModalInstance.dismiss('cancel');
 	}

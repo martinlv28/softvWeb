@@ -14,6 +14,7 @@
         vm.DescargarExcel = DescargarExcel;
         vm.csvheader=['Contrato','Servicio','PeriodoFactura','ImporteTotal','Contratacion','Mensualidad','CambioPaquete','IP','Token','Diferencia','Bonificacion'];
         vm.csvorder=['Contrato','Servicio','PeriodoFactura','ImporteTotal','Contratacion','Mensualidad','CambioServicio','IP','Token','Diferencia','Bonificacion'];
+        //funcion de inicializacion del controlador, obtiene los detalles de contratos prefacturas 
         this.$onInit = function () {
             vm.Ticket = ticket;
             ContratoMaestroFactory.GetDetalleContratoPrefactura(ticket.Clv_FacturaMaestro).then(function (data) {
@@ -25,15 +26,15 @@
                 vm.Total = data.GetDetalleContratoPrefacturaResult.Total;
             });
         };
-
+//Se puede usar para descartar un modal
         function cancel() {
             $uibModalInstance.dismiss('cancel');
         }
-
+//NA
         function ok() {
 
         }
-
+//NA
         function DescargarExcel(){
 
         }
