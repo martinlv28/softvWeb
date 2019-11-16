@@ -19,7 +19,7 @@ angular.module('softvApp').controller('ReporteRecepcionCtrl', ReporteRecepcionCt
     });
 
 function ReporteRecepcionCtrl($uibModal, ngNotify, inMenu, pagosMaestrosFactory, $timeout, $filter) {
-
+//llama a la funcion buscarPagos con parametros espesificos 
     function saldadas() {
         var parametros;
         if (vm.pendientes == 1) {
@@ -110,7 +110,7 @@ function ReporteRecepcionCtrl($uibModal, ngNotify, inMenu, pagosMaestrosFactory,
 
         }
     }
-
+//llama a buscarPagos en base a filtros 
     function buscaContrato(opcion) {
         var parametros;
         if (opcion == 2) {
@@ -399,7 +399,7 @@ function ReporteRecepcionCtrl($uibModal, ngNotify, inMenu, pagosMaestrosFactory,
         vm.Cliente = '';
         $('.buscarContrato').collapse('hide');
     }
-
+//primero borra elementos de pagos despues llama a initArray y despues los añade 
     function crearTodoAsCsv() {
         $timeout(function () {
             for (var i = 0; i < vm.pagos.length; i++) {
@@ -418,7 +418,7 @@ function ReporteRecepcionCtrl($uibModal, ngNotify, inMenu, pagosMaestrosFactory,
             angular.element('#csvDos').triggerHandler('click');
         });
     }
-
+//
     function initArray() {
         vm.arrayReporte = [];
         vm.arrayReporte = [{

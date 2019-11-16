@@ -2,7 +2,7 @@
 angular.module('softvApp').controller('AbrirDetalleCtrl', AbrirDetalleCtrl);
 
 function AbrirDetalleCtrl($uibModal, $state, $rootScope, cajasFactory, ngNotify, inMenu, $uibModalInstance, x) {
-
+////funcion de inicializacion del controlador, obtiene la informacion del detalle 
     function initialData() {
         cajasFactory.dameDetallePago(x.Clv_Session).then(function (detallePago) {
             vm.detallePago = detallePago.GetDameDetalleListResult;
@@ -22,7 +22,7 @@ function AbrirDetalleCtrl($uibModal, $state, $rootScope, cajasFactory, ngNotify,
             vm.selectedService = data.GetMuestraServiciosFACListResult[0];
         });
     }
-
+//hace validaciones donde cuando todo esta correcto nos manda a otra vista 
     function ok() {
         if (vm.selectedService.Clv_Servicio == 0) {
             ngNotify.set('Selecciona un servicio por favor.', 'error');
@@ -67,7 +67,7 @@ function AbrirDetalleCtrl($uibModal, $state, $rootScope, cajasFactory, ngNotify,
     $rootScope.$on('realoadPagos', function () {
         initialData();
     });
-
+//nos manda a la vista modalInformacionCobro.html
     function InformacionCobro(detalle) {
         var items = {};
         items.Clv_Session = detalle.Clv_Session;
@@ -91,7 +91,7 @@ function AbrirDetalleCtrl($uibModal, $state, $rootScope, cajasFactory, ngNotify,
             }
         });
     }
-
+//verifica que se se pueda quitar el detalle, si es que si puede lo hace 
     function openDeleteList() {
         if (vm.selectAparato == undefined) {
             ngNotify.set('Selecciona un concepto.', 'error');
@@ -126,7 +126,7 @@ function AbrirDetalleCtrl($uibModal, $state, $rootScope, cajasFactory, ngNotify,
             }
         }
     }
-
+//llama a varias funciones donde revisa si se pueden adelantar pagos, si es que si puede llama a la vista modalAdelantaPago.html
     function adelantaPagos(item) {
         cajasFactory.puedoAdelantarPago(x.Clv_Session).then(function (data) {
             vm.errPag = data.GetDeepAdelantarResult.Error;
@@ -167,7 +167,7 @@ function AbrirDetalleCtrl($uibModal, $state, $rootScope, cajasFactory, ngNotify,
             }
         });
     }
-
+//hace asignaciones de valores a elementos de la vista 
     function guardaconcepto(item, index) {
         for (var i = 0; i < vm.detallePago.length; i++) {
             vm.detallePago[i].isChecked = false;
@@ -175,7 +175,7 @@ function AbrirDetalleCtrl($uibModal, $state, $rootScope, cajasFactory, ngNotify,
         vm.detallePago[index].isChecked = true;
         vm.selectAparato = item;
     }
-
+//cierra el modal 
     function cancel() {
         //$uibModalInstance.dismiss('cancel');
         $rootScope.$emit('table', {});

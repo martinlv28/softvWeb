@@ -18,6 +18,7 @@ function PagarContadoCtrl(
   proceso,
   $filter
 ) {
+  ////funcion de inicializacion del controlador, obtiene la informacion de los medios y de los bancos 
   function initialData() {
     vm.monto = elem1;
     pagosMaestrosFactory.getMedios().then(function (data) {
@@ -38,7 +39,7 @@ function PagarContadoCtrl(
       vm.selectedBancoCheque = data.GetMuestraBancosListResult[0];
     });
   }
-
+//hace los cambios necesarios y asigna nuevos valores a elementos de la vista
   function cambioEfectivo() {
     vm.maxmonto = vm.monto * 10;
     if (vm.efectivo > vm.maxmonto) {
@@ -61,7 +62,7 @@ function PagarContadoCtrl(
     vm.dineroTransferencia = "";
     vm.pagoNota = "";
   }
-
+//hace los cambios necesarios y asigna nuevos valores a elementos de la vista
   function cambioCheque() {
     vm.cambio = "";
     vm.TotalAbonado = "";
@@ -80,7 +81,7 @@ function PagarContadoCtrl(
     vm.pagoNota = "";
     vm.dineroTransferencia = "";
   }
-
+//hace los cambios necesarios y asigna nuevos valores a elementos de la vista
   function cambioNota() {
     vm.cambio = '';
     vm.TotalAbonado = '';
@@ -99,7 +100,7 @@ function PagarContadoCtrl(
     vm.pagoNota = '';
     vm.dineroTransferencia = '';
   }
-
+//hace los cambios necesarios y asigna nuevos valores a elementos de la vista 
   function cambioTransferencia() {
     vm.cambio = "";
     vm.TotalAbonado = "";
@@ -117,7 +118,7 @@ function PagarContadoCtrl(
     vm.dineroCredito = "";
     vm.pagoNota = "";
   }
-
+//hace los cambios necesarios y asigna nuevos valores a elementos de la vista 
   function muestraFactura(url) {
     vm.animationsEnabled = true;
     var modalInstance = $uibModal.open({
@@ -137,7 +138,7 @@ function PagarContadoCtrl(
       }
     });
   }
-
+//hace las correspondientes validaciones para despues poder generar las facturas 
   function ok() {
 
     if(vm.FechaPago == undefined){
@@ -638,7 +639,7 @@ function PagarContadoCtrl(
       }
     }
   }
-
+//Se puede usar para descartar un modal
   function cancel() {
     $uibModalInstance.dismiss("cancel");
   }

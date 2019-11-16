@@ -2,7 +2,7 @@
 angular.module('softvApp').controller('EscogerPagoCtrl', EscogerPagoCtrl);
 
 function EscogerPagoCtrl($uibModal, $state, $rootScope, cajasFactory, ngNotify, inMenu, $uibModalInstance, $localStorage, metodo, pagosMaestrosFactory, x, elem1, proceso) {
-
+//en base a el contenido de la variable pago, asigna valores a elementos de la ventana 
   function cambio(pago) {
     if (pago == 1) {
       vm.fijos = true;
@@ -16,13 +16,13 @@ function EscogerPagoCtrl($uibModal, $state, $rootScope, cajasFactory, ngNotify, 
       vm.botonVariable = true;
     }
   }
-
+//iguala el monto a lo que se abonara 
   function abonoMenor() {
     if (vm.abono > vm.monto) {
       vm.abono = vm.monto;
     }
   }
-
+//verifica el proceso, donde depende de este, valida los campos en hambos casos y em uno llama a varias funciones y en otro manda a otra vista
   function guardarFijo() {
 
     console.log(proceso);
@@ -107,7 +107,7 @@ function EscogerPagoCtrl($uibModal, $state, $rootScope, cajasFactory, ngNotify, 
     // });
 
   }
-
+//depende de la variable proceso si llama a algunas funciones en espesifico o a una vista
   function guardarVariable() {
 
     if (vm.proceso === 'PCM') {
@@ -192,7 +192,7 @@ function EscogerPagoCtrl($uibModal, $state, $rootScope, cajasFactory, ngNotify, 
 
   
   }
-
+//depende de el proceso si hace asignaciones espesificas en elementos de la vista 
   function operacion() {
 
     if (vm.proceso === 'PCM') {
@@ -216,7 +216,7 @@ function EscogerPagoCtrl($uibModal, $state, $rootScope, cajasFactory, ngNotify, 
 
 
   }
-
+//Se puede usar para descartar un modal
   function cancel() {
     $uibModalInstance.dismiss('cancel');
   }

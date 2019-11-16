@@ -19,7 +19,7 @@ angular.module('softvApp').controller('agregaListaPagoCtrl', agregaListaPagoCtrl
   });
 
 function agregaListaPagoCtrl($uibModal, $state, $rootScope, cajasFactory, pagosMaestrosFactory , ngNotify, $uibModalInstance, Clv_SessionPadre, $filter, Contratos, detallePagoTodo) {
-
+//funcion de inicializacion del controlador, ase haciganciones a elementos de la vista 
   function Init() {
     vm.contratosLigados = Contratos.lstCliS;
     vm.displayCollection = Contratos.lstCliS;
@@ -28,11 +28,11 @@ function agregaListaPagoCtrl($uibModal, $state, $rootScope, cajasFactory, pagosM
     });
 
   }
-
+//Se puede usar para descartar un modal
   function cancel() {
     $uibModalInstance.dismiss('cancel');
   }
-
+//lo ordena
   function sortByKey(array, key) {
     return array.sort(function (a, b) {
       var x = a[key];
@@ -86,7 +86,7 @@ function agregaListaPagoCtrl($uibModal, $state, $rootScope, cajasFactory, pagosM
       });
     }
   }
-
+//obtiene los datos del suscriptor hace validaciones para ver si se puede hacer cambios o añadir adicionales 
   function agregarLista() {
     cajasFactory.dameSuscriptor(vm.ContratoSeleccionado).then(function (suscriptor) {
       vm.Suscriptor = suscriptor.GetDameTiposClientesListResult[0];

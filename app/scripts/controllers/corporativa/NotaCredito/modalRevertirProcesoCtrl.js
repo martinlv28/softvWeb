@@ -11,13 +11,13 @@
     var vm = this;
     vm.cancel = cancel;
     vm.ok = ok;
-
+//Se puede usar para descartar un modal, envia el evento 
 
     function cancel() {
       $uibModalInstance.dismiss('cancel');
       $rootScope.$broadcast('verticket', options);
     }
-
+//llama al procedimiento cancelar 
     function ok() {
 
       ContratoMaestroFactory.GetProcedimientoCancelar(options.clvnota).then(function (data) {

@@ -13,7 +13,7 @@ function PagoDetalleContratoMaestroCtrl($stateParams, ContratoMaestroFactory,cor
   vm.abrirDetalle=abrirDetalle;
   vm.abrirPago=abrirPago;
   vm.PagarCredito=PagarCredito;
-
+//funcion de inicializacion del controlador, obtiene informacion del contrato, valida si hay conceptos por facturar 
   function init() {
 
   /*   var fechaHoy = new Date();
@@ -54,13 +54,13 @@ function PagoDetalleContratoMaestroCtrl($stateParams, ContratoMaestroFactory,cor
 
   
   }
-
+//obtiene detalles de la factura 
   function DetalleFactura(clv_session) {
     ContratoMaestroFactory.Sp_DameDetalleFacturaMaestra(clv_session).then(function (result) {
       vm.detalleFactura = result.GetSp_DameDetalleFacturaMaestraListResult;
     });
   }
-
+//valida que haya una pregunta, si la hay llama a la vista ModalHazPregunta.html
   function HacerPregunta(clv_session, option) { 
    
     ContratoMaestroFactory.uspHaz_Pregunta(vm.IdContratoMaestro, 900).then(function (data) {
@@ -96,7 +96,7 @@ function PagoDetalleContratoMaestroCtrl($stateParams, ContratoMaestroFactory,cor
 
     });
   }
-
+//llama a la vista abrirDetalle.html
   function abrirDetalle(x) {
     vm.animationsEnabled = true;
     var modalInstance = $uibModal.open({
@@ -117,7 +117,7 @@ function PagoDetalleContratoMaestroCtrl($stateParams, ContratoMaestroFactory,cor
     });
 }
 
-
+//llama a la vista agregaListaPago.html
   function agregarListaGeneral(){ 
     vm.animationsEnabled = true;
     vm.modalInstanceLista = $uibModal.open({
@@ -155,7 +155,7 @@ function PagoDetalleContratoMaestroCtrl($stateParams, ContratoMaestroFactory,cor
         //alert('Modal dismissed');
     });
 }
-
+//llama a la vista yaPago.html
 function abrirPago(x, y) {
   vm.animationsEnabled = true;
   var modalInstance = $uibModal.open({
@@ -179,7 +179,7 @@ function abrirPago(x, y) {
   });
 }
 
-
+//hace asignaciones de valores y llama al avista abrirPago.html
 function PagarCredito(z, imp, y, tipo) {
   imp.forEach(function (element) {
       if (element.Posicion == 4) {

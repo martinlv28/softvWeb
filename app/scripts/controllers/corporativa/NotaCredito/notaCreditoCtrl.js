@@ -14,7 +14,7 @@
     vm.DescargarPDF = DescargarPDF;
     vm.DescargarXML = DescargarXML;
     vm.Exportar = Exportar;
-
+//funcion de inicializacion del controlador, revisa el id, depende de este hace asignaciones, despues llama a FiltrosBusquedaNotasDeCredito
     this.$onInit = function () {
       buscar(0);
       vm.csvheader = ['NotaCredito', 'Factura', 'ContratoMaestro', 'FechaGeneracion', 'Status', 'Ticket', 'Monto','Moneda'];
@@ -65,7 +65,7 @@
         vm.Notas = data.GetBusquedaNotasListResult;
       });
     }
-
+//llama a la vista ModalDetalleNota.html
     function DetalleNota(nota) {
 
       var modalInstance = $uibModal.open({
@@ -86,7 +86,7 @@
       });
     }
 
-
+//obtiene la factura para despues descargarlo en xml
     function DescargarXML(nota) {
       var params = {
         'Tipo': 'T',
@@ -111,7 +111,7 @@
 
       });
     }
-
+//obtiene la factura para despues descargarlo en pdf
     function DescargarPDF(nota) {
       ContratoMaestroFactory.GetImprimeFacturaFiscalNotaMaestro(nota.NotaCredito).then(function (result) {
         if (result.GetImprimeFacturaFiscalNotaMaestroResult.IdResult === 0) {
@@ -135,7 +135,7 @@
       });
     }
 
-
+//revisa la opcion de nota y depende de esta si llama a funciones espesificas o a la vista ModalDetalleFactura.html
 
     function opcionesNota(opcion, nota) {
       if (opcion == 1) {
@@ -178,7 +178,7 @@
 
       }
     }
-
+//revisa las fechas y despues llama a la funcion FiltrosBusquedaNotasDeCredito
     function Exportar() {
       var parametros = {};
       if (vm.FechaInicial == undefined || vm.FechaFinal == undefined) {

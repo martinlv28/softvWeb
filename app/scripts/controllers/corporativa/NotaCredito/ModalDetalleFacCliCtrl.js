@@ -13,6 +13,7 @@
     vm.ok = ok;
     vm.calcular=calcular;
     vm.sumatotal = 0;
+    //funcion de inicializacion del controlador, obtiene los detalles de facturas por clientes 
     this.$onInit = function () {
 
       ContratoMaestroFactory.DameDetalle_FacturaporCli(options.Clv_FacturaCli, options.clv_session).then(function (response) {
@@ -21,11 +22,11 @@
 
       });
     }
-
+//Se puede usar para descartar un modal
     function cancel() {
       $uibModalInstance.dismiss('cancel');
     }
-
+//añande el detalle a la nota de credito 
     function ok() {
       var claves = [];
       for (var a = 0; a < vm.conceptos.length; a++) {
@@ -45,7 +46,7 @@
         $uibModalInstance.dismiss('cancel');
       });
     }
-
+//calcula la suma total 
     function calcular() {
       vm.sumatotal = 0;
       vm.conceptos.forEach(function (element) {

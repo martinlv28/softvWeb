@@ -19,7 +19,7 @@
     vm.cambioDescripcion = cambioDescripcion;
     vm.cambioMonto = cambioMonto;
     vm.totalconceptos = 0;
-//
+//funcion de inicializacion del controlador, llama a la funcion singleContrato de corporativoFactory
     this.$onInit = function () {
       vm.clave = obj.clave;
       vm.status = obj.status;
@@ -33,11 +33,11 @@
         calcularmonto();
       });
     };
-
+//Se puede usar para descartar un modal
     function cancel() {
       $uibModalInstance.dismiss('cancel');
     }
-
+//hace asignaciones a una variable y llama a la funcion calcularmonto
     function AddItem() {
       var concepto = {};
       concepto.Accion = 0;
@@ -50,29 +50,29 @@
       vm.conceptonuevo = '';
       vm.montonuevo = 0;
     }
-
+//hace una asignacion y despues llama a la funcion calcularmonto
     function deleteItem(index) {
       vm.conceptos[index].Accion = 2;
       calcularmonto();
     }
-
+//imprime en consola, despues llama a la funcion calcularmonto
     function cambioMonto(imp, index) {
       console.log(imp, index);
       vm.conceptos[index].Importe = imp;
       calcularmonto();
     }
-
+//asignacion de una variable 
     function cambioDescripcion(des, index) {
       vm.conceptos[index].Descripcion = des;
     }
-
+//hace la suma de todos los conceptos 
     function calcularmonto() {
       vm.totalconceptos = 0;
       vm.conceptos.forEach(function (item) {
         vm.totalconceptos += (item.Importe === undefined || item.Accion === 2) ? 0 : item.Importe;
       });
     }
-
+//hace validaciones y llama a varias funciones donde guarda la informacion nueva 
     function ok() {
       var array_ = [];
       vm.conceptos.forEach(function (item) {
