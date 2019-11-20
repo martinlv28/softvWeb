@@ -418,7 +418,7 @@ function ReporteRecepcionCtrl($uibModal, ngNotify, inMenu, pagosMaestrosFactory,
             angular.element('#csvDos').triggerHandler('click');
         });
     }
-//
+//Encabezados 
     function initArray() {
         vm.arrayReporte = [];
         vm.arrayReporte = [{
@@ -447,7 +447,7 @@ function ReporteRecepcionCtrl($uibModal, ngNotify, inMenu, pagosMaestrosFactory,
             'Saldada': 'Saldada'
         }];
     }
-
+//crea la estrctura del pdf que llevara el reporte
     function createPdfTodo() {
         var rows = [[0, 0, 0, 0, 0, 0,]];
         var r = 1;
@@ -535,7 +535,7 @@ function ReporteRecepcionCtrl($uibModal, ngNotify, inMenu, pagosMaestrosFactory,
         }
         doc.save(vm.filename + '.pdf');
     }
-
+//obtiene los datos de la imagen 
     function getImageDataURL() {
         var url = document.getElementById("pdflogoimage").src;
         var data, canvas, ctx;
@@ -549,7 +549,7 @@ function ReporteRecepcionCtrl($uibModal, ngNotify, inMenu, pagosMaestrosFactory,
         }
         img.src = url;
     }
-
+//detecta uin enter, llama a la funcion buscaContrato
     function enterContrato(event, opcion) {
         if (event.which === 13) {
             buscaContrato(opcion);

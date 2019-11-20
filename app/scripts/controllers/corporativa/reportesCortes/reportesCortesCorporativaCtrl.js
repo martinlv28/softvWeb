@@ -3,7 +3,7 @@ angular.module('softvApp')
     .controller('reportesCortesCorporativaCtrl', function ($state, ngNotify, $localStorage, reportesCortesCorporativaFactory, globalService, $sce) // servicio
     {
         var vm = this;
-
+////funcion de inicializacion del controlador, llama a ListaDistribuidores
         this.$onInit = function () {
 
             ListaDistribuidores();
@@ -12,7 +12,7 @@ angular.module('softvApp')
 
 
         //------------------Distribuidores -------------------------------
-
+//filtra la lista de distribuidores y si encuentra regresa un true y si no un falce 
         function ExisteDistribuidor(id) {
             var result = $.grep(Distribuidores, function (obj) { return obj.Clv_Plaza == id; });
             if (result.length == 0) {
@@ -21,7 +21,7 @@ angular.module('softvApp')
                 return true;
             }
         }
-
+//revisa el valore de una variable donde depende de esta puede llamar a mostrarDistribuidorByUsuario
         function distribuidorPadre() {
             if (banderas.banderaDistribuidor == 1) {
 
@@ -46,7 +46,7 @@ angular.module('softvApp')
             }
         }
 
-
+//verifica que este seleccionado el distribuidor como el hijo, para poderlo eliminar 
         function distribuidorHijo(obj) {
 
             if (banderas.banderaDistribuidor == 1) //si es 1, está seleccionado, volver a NO SELECCIONADO
@@ -62,7 +62,7 @@ angular.module('softvApp')
             }
         }
 
-
+//si existe distribuidor lo elimina, de lo contrario lo añade 
         function AddDistribuidor(obj) {
             if (ExisteDistribuidor(obj.Clv_Plaza)) {
                 DeleteFromArray(Distribuidores, 'Clv_Plaza', obj.Clv_Plaza)
@@ -73,6 +73,7 @@ angular.module('softvApp')
         }
 
         var DistribuidoresTodos = [];
+        //llama a mostrarDistribuidorByUsuario
         function ListaDistribuidores() {
             reportesCortesCorporativaFactory.mostrarDistribuidorByUsuario(clv_usuario).then(function (data) {
                 vm.DistribuidoresTable = data.GetDistribuidorByUsuarioResult;
@@ -80,7 +81,7 @@ angular.module('softvApp')
             });
         }
         //--------------- Sucursales ---------------------------------
-
+//revista si hay sucursales 
         function ExisteSucursal(id) {
             var result = $.grep(Sucursales, function (obj) { return obj.Clv_Sucursal == id; });
             if (result.length == 0) {
@@ -89,7 +90,7 @@ angular.module('softvApp')
                 return true;
             }
         }
-
+//revisa el valore de una variable donde depende de esta puede llamar a mostrarSucursalByUsuario
         function sucursalPadre() {
 
             if (banderas.banderaSucursal == 1) {
@@ -115,7 +116,7 @@ angular.module('softvApp')
             }
         }
 
-
+//revisa si esa la sucusral donde si esta la elimina y si no la añade a la lista 
 
         function sucursalHijo(obj) {
 
@@ -131,7 +132,7 @@ angular.module('softvApp')
             }
         }
 
-
+//si la sucursal existe la elimina, si no la añade 
         function AddSucursal(obj) {
 
             if (ExisteSucursal(obj.Clv_Sucursal)) {
@@ -143,6 +144,7 @@ angular.module('softvApp')
         }
 
         var SucursalesTodos = [];
+        //llama a mostrarSucursalByUsuario
         function ListaSucursales() {
             reportesCortesCorporativaFactory.mostrarSucursalByUsuario(clv_usuario).then(function (data) {
                 vm.SucursalesTable = data.GetSucursalByUsuarioResult;
@@ -151,11 +153,11 @@ angular.module('softvApp')
         }
 
         //-------------
-
+//lo añade a la lista
         function AddToArray(arr, value) {
             arr.push(value);
         }
-
+//lo quita de la lista 
         function DeleteFromArray(arr, attr, value) {
             var i = arr.length;
             while (i--) {
@@ -169,7 +171,7 @@ angular.module('softvApp')
         }
 
 
-
+//limpia la lista 
         function cleanArray() {
             objPrincipal = {};
             for (var i = 0; i < vm.DistribuidoresTable.length; i++) {
@@ -189,7 +191,7 @@ angular.module('softvApp')
             vm.search = null;
             vm.inicializaCheckbox();
         }
-
+//asigna fasle a tres valores de elementos de la vista 
         function inicializaCheckbox() {
             vm.distriTodo = false;
             vm.sucurTodo = false;
@@ -197,7 +199,7 @@ angular.module('softvApp')
         }
 
 
-
+//limpia barra búsqueda y asigna true a otras tres propiedades de elementos de la vista 
         function showOpcion() {
 
             vm.search = null; //limpia barra búsqueda
@@ -206,7 +208,7 @@ angular.module('softvApp')
             vm.preporte = true;
         }
 
-
+//asigna btn-default a los 6 botones que hay en la vista 
         function elMenu() {
             vm.myButton1 = 'btn-default';
             vm.myButton2 = 'btn-default';
@@ -215,7 +217,7 @@ angular.module('softvApp')
             vm.myButton5 = 'btn-default';
             vm.myButton6 = 'btn-default';
         }
-
+//depende de el valor contenido en valReporte si activa la info de un boton 
         function changeBgColor(valReporte) {
             vm.elMenu();
             switch (valReporte) {
@@ -246,7 +248,8 @@ angular.module('softvApp')
         }
 
 
-        // 1.- DISTRIBUIDORES
+        // 1.- DISTRIBUIDORES 
+        //verifica si se selecciono un distribuidor donde si se seleciono valida el reporte seleccionado y depende de este si llama a una funcion en especial
         function filtroDistribuidores() {
 
             if (Distribuidores.length == 0) {
@@ -262,7 +265,7 @@ angular.module('softvApp')
                 }
             }
         }
-
+//aplica los filtros de busqueda para los distribuidores
         function filtroDistribuidoresExcel() {
 
             if (Distribuidores.length == 0) {
@@ -326,7 +329,7 @@ angular.module('softvApp')
                 }
             }
         }
-
+//verifia que se haya seleccionado al menos una sucursal, si es asi llama a showReporte
 
         function filtroSucursales() {
 
@@ -340,6 +343,7 @@ angular.module('softvApp')
         }
 
         // 2.- SUCURSALES
+        //asigna valores a elementos de la vista y llama a ListaSucursales
         function showSucursales() {
             vm.search = "";
             vm.pdistribuidores = true;
@@ -348,6 +352,7 @@ angular.module('softvApp')
         }
 
         // 3.- REPORTE    
+        ////asigna valores a elementos de la vista y llama a crearObjParametros y crearXml
         function showReporte() {
 
             vm.search = "";
@@ -358,7 +363,7 @@ angular.module('softvApp')
             crearObjParametros();
             crearXml();
         }
-
+//crea los parametros 
         function crearObjParametros() {
 
             if (reporteSeleccionado >= 1 && reporteSeleccionado <= 3)//1 general, 3 resumen sucursales
@@ -404,7 +409,7 @@ angular.module('softvApp')
             }
 
         }
-
+//crea el xml
         function crearXml() {
             console.log(objPrincipal);
             reportesCortesCorporativaFactory.getXml(reporteSeleccionado, objPrincipal, Distribuidores, Sucursales).then(function (data) {
@@ -419,7 +424,7 @@ angular.module('softvApp')
         }
 
 
-
+//depende del reporte seleccionado, cambia la url 
         function realizaReporte() {
 
             reportesCortesCorporativaFactory.creaReporte(clv_usuario, reporteSeleccionado, OtrosFiltrosXml, distribuidoresXML, sucursalesXml).then(function (data) {

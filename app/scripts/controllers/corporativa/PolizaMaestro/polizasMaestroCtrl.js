@@ -15,7 +15,7 @@ function polizaMaestroCtrl($uibModal, ContratoMaestroFactory,ngNotify, corporati
   vm.Dolares = 0;
   vm.CambiaDolares = CambiaDolares;
   vm.Dolares = false;
-
+////funcion de inicializacion del controlador, llama a GetObtienePolizasMaestro
   this.$onInit = function () {
     var params = {};
     params.filtros = {
@@ -33,7 +33,7 @@ function polizaMaestroCtrl($uibModal, ContratoMaestroFactory,ngNotify, corporati
       });*/
     });
   }
-
+//en base al parametro resivido llama a GetObtienePolizasMaestro con parametro especial 
   function BuscaPoliza(op){
     var params = {};
     if (op === 2)
@@ -65,7 +65,7 @@ function polizaMaestroCtrl($uibModal, ContratoMaestroFactory,ngNotify, corporati
       vm.Polizas = data.GetObtienePolizasMaestroResult;
     });
   }
-
+//Elimina la póliza seleccionada
   function EliminaPoliza(Clv_Poliza){
     //Eliminamos la póliza seleccionada
     var params = {};
@@ -91,7 +91,7 @@ function polizaMaestroCtrl($uibModal, ContratoMaestroFactory,ngNotify, corporati
       });
     });
   }
-
+//obtiene los detalles de la poliza
   function VerDetalles(Poliza){
     var params = {};
     params.filtros = {
@@ -108,11 +108,11 @@ function polizaMaestroCtrl($uibModal, ContratoMaestroFactory,ngNotify, corporati
       console.log(vm.DetallePoliza);
     });
   }
-
+//hace una asignacion a un elemento de la vista
   function QuitarDetalles(){
     vm.Detalle=0;
   }
-
+//llama a la vista modalNuevoPolizaMaestro.html
   function NuevaPoliza(object) {
     vm.animationsEnabled = true;
     vm.modalInstanceNuevoPoliza = $uibModal.open({
@@ -137,7 +137,7 @@ function polizaMaestroCtrl($uibModal, ContratoMaestroFactory,ngNotify, corporati
         //alert('Modal dismissed');
     });
   }
-
+//llama a GetPolizaTxtCobros, revisa el navegador del cual esta navegando 
   function Exportar(Clv_Poliza){
     var params = {};
     params.filtros = {
@@ -174,7 +174,7 @@ function polizaMaestroCtrl($uibModal, ContratoMaestroFactory,ngNotify, corporati
       }
     });
   }
-
+//verifica que este en dolares 
   function CambiaDolares(){
     if (vm.DolaresCheck === true){
       vm.Dolares = 1;

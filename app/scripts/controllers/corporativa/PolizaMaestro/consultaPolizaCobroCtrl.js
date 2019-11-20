@@ -6,7 +6,7 @@ function consultaPolizaCobroCtrl($uibModal, ContratoMaestroFactory, ngNotify, co
   vm.sortKey = 'Referencia';
   vm.EliminaPoliza = EliminaPoliza;
   vm.Exportar = Exportar;
-
+//funcion de inicializacion del controlador, obtiene la informacion sobre las polizas maestro cobro 
   this.$onInit = function () {
     var params = {};
     params.filtros = {
@@ -24,7 +24,7 @@ function consultaPolizaCobroCtrl($uibModal, ContratoMaestroFactory, ngNotify, co
       });
     });
   }
-
+//Elimina la póliza seleccionada
   function EliminaPoliza(){
     //Eliminamos la póliza seleccionada
     var params = {};
@@ -41,7 +41,7 @@ function consultaPolizaCobroCtrl($uibModal, ContratoMaestroFactory, ngNotify, co
       ngNotify.set('Póliza eliminada exitosamente.', 'success');
     });
   }
-
+//llama a GetPolizaTxtCobros, revisa el navegador del cual esta navegando 
   function Exportar(){
     var params = {};
     params.filtros = {

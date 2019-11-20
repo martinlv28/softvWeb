@@ -8,7 +8,7 @@ function relacionIngresosFactory($q,$http,$localStorage,globalService ) {
   var paths = {
     GetRelacionIngresosMaestro: '/RelacionIngresosMaestro/GetRelacionIngresosMaestro'
   };
-
+//obtiene la relacion de ingresos maestro 
   factory.GetRelacionIngresosMaestro = function(Distribuidores,FechaInicial,FechaFinal,Dolares,ExentoIVA) {
 			var deferred = $q.defer();
 			var user = $localStorage.currentUser.idUsuario;

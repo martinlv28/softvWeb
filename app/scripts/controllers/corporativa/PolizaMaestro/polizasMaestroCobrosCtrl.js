@@ -14,6 +14,7 @@ function polizasMaestroCobrosCtrl($uibModal, ContratoMaestroFactory,ngNotify, co
   vm.DolaresCheck = 0;
   vm.CambiaDolares = CambiaDolares;
   vm.Dolares = false;
+  ////funcion de inicializacion del controlador,
   this.$onInit = function () {
     var params = {};
     params.filtros = {
@@ -32,7 +33,7 @@ function polizasMaestroCobrosCtrl($uibModal, ContratoMaestroFactory,ngNotify, co
       });*/
     });
   }
-
+//revisa la variable op y depdende de esta hace asignaciones, despues llama a GetObtienePolizasMaestroCobros
   function BuscaPoliza(op){
     var params = {};
     if (op === 2)
@@ -64,7 +65,7 @@ function polizasMaestroCobrosCtrl($uibModal, ContratoMaestroFactory,ngNotify, co
       vm.Polizas = data.GetObtienePolizasMaestroCobrosResult;
     });
   }
-
+//Elimina la póliza seleccionada
   function EliminaPoliza(Clv_Poliza){
     //Eliminamos la póliza seleccionada
     var params = {};
@@ -91,7 +92,7 @@ function polizasMaestroCobrosCtrl($uibModal, ContratoMaestroFactory,ngNotify, co
       });
     });
   }
-
+//obtiene los detalles de la poliza
   function VerDetalles(Poliza){
     var params = {};
     params.filtros = {
@@ -107,11 +108,11 @@ function polizasMaestroCobrosCtrl($uibModal, ContratoMaestroFactory,ngNotify, co
       vm.DetallePoliza = data.GetDetallesPolizaMaestroCobrosResult;
     });
   }
-
+//hace una asignacion a un elemento de la vista
   function QuitarDetalles(){
     vm.Detalle=0;
   }
-
+//llama a la vista modalNuevoPolizaMaestroCobro.html
   function NuevaPoliza(object) {
     vm.animationsEnabled = true;
     vm.modalInstanceNuevoPoliza = $uibModal.open({
@@ -136,7 +137,7 @@ function polizasMaestroCobrosCtrl($uibModal, ContratoMaestroFactory,ngNotify, co
         //alert('Modal dismissed');
     });
   }
-
+//llama a GetPolizaTxtCobros, revisa el navegador del cual esta navegando 
   function Exportar(Clv_Poliza){
     var params = {};
     params.filtros = {
@@ -173,7 +174,7 @@ function polizasMaestroCobrosCtrl($uibModal, ContratoMaestroFactory,ngNotify, co
       }
     });
   }
-
+//verifica que este en dolares 
   function CambiaDolares(){
     if (vm.DolaresCheck === true){
       vm.Dolares = 1;

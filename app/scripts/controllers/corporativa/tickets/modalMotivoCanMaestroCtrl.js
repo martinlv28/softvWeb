@@ -12,7 +12,7 @@
     vm.cancel = cancel;
     vm.ok = ok;
     vm.op = ticket.op;
-
+////funcion de inicializacion del controlador, depende de la op llama a MUESTRAMOTIVOS con parametro 1 o 0 
     this.$onInit = function () {
       console.log('********tipo*********', ticket.tipo);
       console.log('**********ticket ******************', ticket);
@@ -29,11 +29,11 @@
       }
 
     }
-
+//Se puede usar para descartar un modal
     function cancel() {
       $uibModalInstance.dismiss('cancel');
     }
-
+//depende del tipo de ticket es la factura que se imprimira, hace otras validaciones donde depende de estas si llama a otras vistas o si llama a otras funciones 
     function ok() {
 
 

@@ -2,7 +2,7 @@
 angular.module('softvApp').controller('TipoPagoRecepcionCtrl', TipoPagoRecepcionCtrl);
 
 function TipoPagoRecepcionCtrl($uibModal, $state, $rootScope, cajasFactory, ngNotify, inMenu, $uibModalInstance, elem1, x, proceso) {
-
+//revisa el tipo y depende de esta si llama a una vista especial 
 	function aceptar() {
 		var metodo = vm.tipo;
 		if (vm.tipo == null || vm.tipo === undefined) {
@@ -111,7 +111,7 @@ function TipoPagoRecepcionCtrl($uibModal, $state, $rootScope, cajasFactory, ngNo
 			}
 		}
 	}
-
+//Se puede usar para descartar un modal
 	function cancel() {
 		$uibModalInstance.dismiss('cancel');
 	}

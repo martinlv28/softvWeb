@@ -2,7 +2,7 @@
 angular.module('softvApp').controller('YaPagoCtrl', YaPagoCtrl);
 
 function YaPagoCtrl($uibModal, inMenu, $uibModalInstance, ngNotify, $localStorage, pagosMaestrosFactory, x, y) {
-
+//llama a generaFactura y revisa que se halla generado correctamente la factura 
     function ok() {
         var obj = {
             'ContratoMaestro': y.IdContratoMaestro,
@@ -27,7 +27,7 @@ function YaPagoCtrl($uibModal, inMenu, $uibModalInstance, ngNotify, $localStorag
             }
         });
     }
-
+//Se puede usar para descartar un modal
     function cancel() {
 	    $uibModalInstance.dismiss('cancel');
 	}

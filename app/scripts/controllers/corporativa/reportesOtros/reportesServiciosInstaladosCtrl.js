@@ -19,7 +19,7 @@ angular.module('softvApp').controller('reportesServiciosInstaladosCtrl', reporte
     });
 
 function reportesServiciosInstaladosCtrl($uibModal, ngNotify, inMenu, pagosMaestrosFactory, $timeout) {
-
+//verifica si se selecciono un contrato, si se selecciono uno llama a ReporteServiciosInstalados
     function buscaContrato() {
         var parametros;
         if (vm.ContratoMaestro == undefined || vm.ContratoMaestro == '') {
@@ -38,7 +38,7 @@ function reportesServiciosInstaladosCtrl($uibModal, ngNotify, inMenu, pagosMaest
         }
         
     }
-
+//enlista todos los contratos 
     function crearTodoAsCsv() {
         $timeout(function () {
             for (var i = 0; i < vm.contratos.length; i++) {
@@ -56,7 +56,7 @@ function reportesServiciosInstaladosCtrl($uibModal, ngNotify, inMenu, pagosMaest
             angular.element('#csvDos').triggerHandler('click');
         });
     }
-
+//encabezados 
     function initArray() {
         vm.arrayReporte = [];
         vm.arrayReporte = [{
@@ -70,7 +70,7 @@ function reportesServiciosInstaladosCtrl($uibModal, ngNotify, inMenu, pagosMaest
             'UltimoMesPagado': 'Ultimo Mes Pagado'
         }];
     }
-
+//crea el contendido que tendra el pdf que se generara 
     function createPdfTodo() {
         var rows = [[0, 0, 0, 0, 0, 0,]];
         var r = 1;
@@ -144,7 +144,7 @@ function reportesServiciosInstaladosCtrl($uibModal, ngNotify, inMenu, pagosMaest
         }
         doc.save(vm.filename + '.pdf');
     }
-
+//obtiene la imagen del logo 
     function getImageDataURL() {
         var url = document.getElementById("pdflogoimage").src;
         var data, canvas, ctx;
@@ -158,7 +158,7 @@ function reportesServiciosInstaladosCtrl($uibModal, ngNotify, inMenu, pagosMaest
         }
         img.src = url;
     }
-
+//detecta un enter y llama a buscaContrato
     function enterContrato(event, opcion) {
         if (event.which === 13) {
             buscaContrato();

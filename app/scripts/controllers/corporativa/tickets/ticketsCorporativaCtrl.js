@@ -24,7 +24,7 @@
           });
         }
      */
-
+//valida la opc donde depende de este si llama a otras vistas o si llama a GetEnviaFacturaFiscal
     function opcionTicket(opc, ticket) {
       ticket.tipo = 'M';
       ticket.Modulo = 'Facturas';
@@ -92,7 +92,7 @@
 
 
 
-
+//llama a la vista modalPagosFacturas.html
     function historial(x) {
 
       vm.animationsEnabled = true;
@@ -154,7 +154,7 @@
           });
         } */
 
-
+//depende del parametro resivido asigna valores al contenido de parametros y al final llama a BuscaFacturasMaestro
     function Buscar(opc) {
 
       var parametros = {};
@@ -218,7 +218,7 @@
         vm.Tickets = data.GetBuscaFacturasMaestroListResult;
       });
     }
-
+//descarga el xml del ticket resivido 
     function DescargarXML(ticket) {
       var params = {
         'Tipo': 'M',
@@ -242,7 +242,7 @@
         downloadLink[0].click();
       });
     }
-
+//descarga el pdf del ticket resivido 
     function DescargarPDF(ticket) {
       ContratoMaestroFactory.GetImprimeFacturaFiscal(ticket.Clv_FacturaMaestro).then(function (result) {
         if (result.GetImprimeFacturaFiscalResult.IdResult === 0) {
@@ -266,7 +266,7 @@
 
       });
     }
-
+//llama a BuscaFacturasMaestro con fechas definidas o si no tiene manda fechas en blanco 
     function Exportar() {
       var parametros = {};
       if (vm.FechaInicial == undefined || vm.FechaFinal == undefined) {
